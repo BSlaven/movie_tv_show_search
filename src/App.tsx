@@ -2,15 +2,15 @@ import './App.css';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import ItemCard from './components/ItemCard/ItemCard';
-// import ItemPage from './components/ItemPage/ItemPage';
+import ItemPage from './components/ItemPage/ItemPage';
+import Home from './components/Home/Home';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/details" element={<h1>Details Page</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/details" element={<ItemPage />} />
       </Routes>
     </BrowserRouter>
   )
