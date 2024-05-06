@@ -3,6 +3,14 @@ import axios from "axios"
 
 // import ItemCard from "../ItemCard/ItemCard"
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
+console.log(API_KEY);
+
+const BASE_URL = 'https://api.themoviedb.org/3/movie/top_rated';
+
+const api = `${BASE_URL}?api_key=${API_KEY}`
+
 const Home = () => {
 
   // const [ searchTerm, setSearchTerm ] = useState('');
@@ -11,7 +19,7 @@ const Home = () => {
   
 
   const fetchData = async () => {
-    const results = await axios.get();
+    const results = await axios.get(api);
 
     console.log(results.data.results)
   }
