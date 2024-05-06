@@ -11,7 +11,7 @@ const Home = () => {
   
 
   const fetchData = async () => {
-    const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=77805e3f673d6015f6f11ad2d5b72b65');
+    const results = await axios.get();
 
     console.log(results.data.results)
   }
