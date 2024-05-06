@@ -1,11 +1,11 @@
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios"
 
-import ItemCard from "../ItemCard/ItemCard"
+// import ItemCard from "../ItemCard/ItemCard"
 
 const Home = () => {
 
-  const [ searchTerm, setSearchTerm ] = useState('');
+  // const [ searchTerm, setSearchTerm ] = useState('');
   const [ category, setCategory ] = useState('movies')
 
   
@@ -13,11 +13,7 @@ const Home = () => {
   const fetchData = async () => {
     const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=77805e3f673d6015f6f11ad2d5b72b65');
 
-    // console.log(results.data.results)
-
-    // const movies = await results.json();
-
-    // console.log(movies);
+    console.log(results.data.results)
   }
 
   useEffect(() => {
@@ -29,11 +25,7 @@ const Home = () => {
   }, [category])
 
   const categoryClickHandler = (name: string) => {
-
-    console.log(name)
-    // const { name } = e.target
-    // console.log(name)
-    // setCategory(name);
+    setCategory(name);
   }
   
   return (
