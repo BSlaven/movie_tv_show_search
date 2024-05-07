@@ -9,17 +9,17 @@ console.log(API_KEY);
 
 const BASE_URL = 'https://api.themoviedb.org/3/movie/top_rated';
 
-const api = `${BASE_URL}?api_key=${API_KEY}`
+const API = `${BASE_URL}?api_key=${API_KEY}`
 
 const Home = () => {
 
-  // const [ searchTerm, setSearchTerm ] = useState('');
+  const [ searchTerm, setSearchTerm ] = useState('');
   const [ category, setCategory ] = useState('movies')
 
   
 
   const fetchData = async () => {
-    const results = await axios.get(api);
+    const results = await axios.get(API);
 
     console.log(results.data.results)
   }
@@ -35,6 +35,10 @@ const Home = () => {
   const categoryClickHandler = (name: string) => {
     setCategory(name);
   }
+
+  const handleSearchInput = (term: string)  => {
+    setSearchTerm(term)    
+  } 
   
   return (
     <main className="container">
@@ -57,7 +61,14 @@ const Home = () => {
       </div>
       <div className="search-bar">
         <label htmlFor="search">Search</label>
-        <input type="text" id="search" name="search" placeholder="Search..." />
+        <input 
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => handleSearchInput(e.target.value)}
+        />
       </div>
       <main className="cards-container">
         {/* <ItemCard /> */}
