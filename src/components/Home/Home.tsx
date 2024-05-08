@@ -5,8 +5,6 @@ import axios from "axios"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-console.log(API_KEY);
-
 const BASE_URL = 'https://api.themoviedb.org/3/movie/top_rated';
 
 const API = `${BASE_URL}?api_key=${API_KEY}`
@@ -14,22 +12,24 @@ const API = `${BASE_URL}?api_key=${API_KEY}`
 const Home = () => {
 
   const [ searchTerm, setSearchTerm ] = useState('');
-  const [ category, setCategory ] = useState('movies')
-
-  
+  const [ category, setCategory ] = useState('tvshows');
 
   const fetchData = async () => {
-    const results = await axios.get(API);
+    const results = await axios.get(API, {
+      params: {
+        
+      }
+    });
 
-    console.log(results.data.results)
+    console.log(results.data.results);
   }
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, [])
 
   useEffect(() => {
-    console.log(category)
+    console.log(category);
   }, [category])
 
   const categoryClickHandler = (name: string) => {
@@ -37,7 +37,7 @@ const Home = () => {
   }
 
   const handleSearchInput = (term: string)  => {
-    setSearchTerm(term)    
+    setSearchTerm(term);
   } 
   
   return (
