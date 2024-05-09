@@ -5,19 +5,17 @@ import axios from "axios"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const BASE_URL = 'https://api.themoviedb.org/3/movie/top_rated';
-
-const API = `${BASE_URL}?api_key=${API_KEY}`
+const BASE_URL = 'https://api.themoviedb.org/3';
 
 const Home = () => {
 
   const [ searchTerm, setSearchTerm ] = useState('');
-  const [ category, setCategory ] = useState('tvshows');
+  const [ category, setCategory ] = useState('tv');
 
   const fetchData = async () => {
-    const results = await axios.get(API, {
+    const results = await axios.get(`${BASE_URL}/${category}/popular`, {
       params: {
-        
+        api_key: API_KEY
       }
     });
 
