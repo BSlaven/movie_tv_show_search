@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios"
+import axios from "axios";
 
 // import ItemCard from "../ItemCard/ItemCard"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-
 
 const generateApiRoute = (searchTerm: string, category:string): string => {
   const BASE_URL = 'https://api.themoviedb.org/3';
@@ -31,14 +30,18 @@ const Home = () => {
         query: searchTerm.length < 3 ? null : searchTerm
       }
     });
-
     console.log(results.data.results);
   }
 
   useEffect(() => {
+    if(searchTerm.length < 3) {
+      fetchData();
+      return;
+    }
+    
     const delayFetching = setTimeout(() => {
       fetchData();
-    }, 1000)
+    }, 1000);
 
     return () => clearTimeout(delayFetching);
   }, [searchTerm, category]);
