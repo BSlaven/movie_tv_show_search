@@ -5,17 +5,30 @@ import axios from "axios"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const BASE_URL = 'https://api.themoviedb.org/3';
+
+const generateApiRoute = (searchTerm: string, category:string): string => {
+  const BASE_URL = 'https://api.themoviedb.org/3';
+
+  const isSearchRoute = `${searchTerm.length < 3 ? '' : 'search/'}`;
+  
+  const fetchingRoute = `${BASE_URL}/${isSearchRoute}${category}${searchTerm.length < 3 ? '/top_rated' : ''}`;
+
+  return fetchingRoute;
+}
 
 const Home = () => {
 
-  const [ searchTerm, setSearchTerm ] = useState('');
-  const [ category, setCategory ] = useState('tv');
+  const [ searchTerm, setSearchTerm ] = useState<string>('');
+  const [ category, setCategory ] = useState<string>('tv');
 
   const fetchData = async () => {
-    const results = await axios.get(`${BASE_URL}/${category}/popular`, {
+
+    const fetchingRoute = generateApiRoute(searchTerm, category);
+
+    const results = await axios.get(fetchingRoute, {
       params: {
-        api_key: API_KEY
+        api_key: API_KEY,
+        query: searchTerm.length < 3 ? null : searchTerm
       }
     });
 
@@ -46,13 +59,13 @@ const Home = () => {
       <div className="category-bar">
         <button 
           className="btn category-btn"
-          onClick={() => categoryClickHandler('movies')}
+          onClick={() => categoryClickHandler('movie')}
         >
           movies
         </button>
         <button
           className="btn category-btn"
-          onClick={() => categoryClickHandler('tvshows')}
+          onClick={() => categoryClickHandler('tv')}
         >
           tv shows
         </button>
