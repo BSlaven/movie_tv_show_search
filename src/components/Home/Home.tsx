@@ -36,12 +36,12 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchData();
-  }, [])
+    const delayFetching = setTimeout(() => {
+      fetchData();
+    }, 1000)
 
-  useEffect(() => {
-    console.log(category);
-  }, [category])
+    return () => clearTimeout(delayFetching);
+  }, [searchTerm, category]);
 
   const categoryClickHandler = (name: string) => {
     setCategory(name);
