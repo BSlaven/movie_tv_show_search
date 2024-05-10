@@ -45,3 +45,15 @@ VITE_API_KEY=<YOUR_UNIQUE_API_KEY>
 ```
 
 ### Technologies
+
+- I used Vite builder to initialize a React app. Vite is somewhat faster alternative to create-react-app.
+
+- I used CSS modules for styling. This is just my personal preference for styling if no css frameworks are used.
+
+### Usage
+
+- Initially app will fetch ten tv shows. That is the category that is initially selected.
+
+- Click on any category and the app will fetch ten items of that category.
+
+- Type in search box to search for items, either movies or tv shows, depending on which category is selected.
