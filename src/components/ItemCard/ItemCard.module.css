@@ -1,6 +1,6 @@
 .card {
   /* background: rgba(0, 153, 255, 0.575); */
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   border-radius: 0.3rem;
   overflow: hidden;

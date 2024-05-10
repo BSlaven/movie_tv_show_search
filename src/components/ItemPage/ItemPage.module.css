@@ -1,0 +1,24 @@
+.detailsPage {
+  max-width: 1200px;
+  height: 70vh; 
+  margin: 0 auto;
+  padding: 3rem 5rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.detailsImage {
+  width: 70%;
+  height: 70vh;
+}
+
+.detailsTitle {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.detailsImage img {
+  width: 100%;
+  height: 100%;  
+}

@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import styles from './ItemPage.module.css'
+
 import { ItemType } from "../Home/Home";
 
 type ItemDetailsType = ItemType & {
@@ -22,32 +24,41 @@ const ItemPage = () => {
   const [ item, setItem ] = useState<ItemDetailsType | null>(null);
 
   useEffect(() => {
-    console.log(id);
+    console.log(item)
+  }, [item])
+
+  useEffect(() => {
     const fetchItem = async () => {
-      const item = await axios.get(`${BASE_URL}/${category}/${id}`, {
+      const resultItem = await axios.get(`${BASE_URL}/${category}/${id}`, {
         params: {
           api_key: API_KEY
         }
       });
-      console.log(item.data);
-      setItem(item.data)
+      const newItem = {
+        title: resultItem.data.name || resultItem.data.original_name,
+        id: resultItem.data.id,
+        poster_path: resultItem.data.poster_path,
+        overview: resultItem.data.overview
+      }
+      setItem(newItem);
     }
 
     fetchItem();
   }, [])
   
   return (
-    <main>
-      <div className="item-image">
+    <main className={styles.detailsPage}>
+      <div className={styles.detailsImage}>
         <img src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}.jpg`}
           alt="poster image" />
       </div>
-      <p className="item-title">{item?.title}</p>
-      <div className="overview-container">
-        <h5>Brief Description:</h5>
-        <p className="overview">
+      <div className={styles.itemDetails}>
+      <p className={styles.detailsTitle}>{item?.title}</p>
+      <div className={styles.overveiwContainer}>
+        <p className={styles.overveiw}>
           {item?.overview}
         </p>
+      </div>
       </div>
     </main>
   )

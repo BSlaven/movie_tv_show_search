@@ -39,7 +39,13 @@ const Home = () => {
         query: searchTerm.length < 3 ? null : searchTerm
       }
     });
-    const newItems = results.data.results
+    const newItems = results.data.results.map((item: any) => {
+      return {
+        id: item.id,
+        title: item.original_name || item.name,
+        poster_path: item.poster_path
+      }
+    })
     setItems(newItems.slice(0, 10));
   }
 
