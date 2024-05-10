@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const ItemCard = ({ item }:any) => {
   return (
     <div className={styles.card}>
-      <Link to={`/details/${item.id}`}>
+      <Link to={`/details/${item.id}/${item.category}`}>
         <div className={styles.cardImage}>
           <img 
             src={`https://image.tmdb.org/t/p/w500/${item.poster_path}.jpg`}

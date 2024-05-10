@@ -13,20 +13,11 @@ type ItemDetailsType = ItemType & {
 const API_KEY = import.meta.env.VITE_API_KEY;
 export const BASE_URL = 'https://api.themoviedb.org/3';
 
-
-
-const category = 'tv'
-
 const ItemPage = () => {
 
-  const { id } = useParams();
+  const { id, category } = useParams();
 
   const [ item, setItem ] = useState<ItemDetailsType | null>(null);
-
-  useEffect(() => {
-    console.log(item)
-  }, [item])
-
   useEffect(() => {
     const fetchItem = async () => {
       const resultItem = await axios.get(`${BASE_URL}/${category}/${id}`, {
@@ -34,8 +25,9 @@ const ItemPage = () => {
           api_key: API_KEY
         }
       });
+
       const newItem = {
-        title: resultItem.data.name || resultItem.data.original_name,
+        title: resultItem.data.name || resultItem.data.original_name || resultItem.data.original_title,
         id: resultItem.data.id,
         poster_path: resultItem.data.poster_path,
         overview: resultItem.data.overview
@@ -44,7 +36,7 @@ const ItemPage = () => {
     }
 
     fetchItem();
-  }, [])
+  }, []);
   
   return (
     <main className={styles.detailsPage}>

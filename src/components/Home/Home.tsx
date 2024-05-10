@@ -39,19 +39,17 @@ const Home = () => {
         query: searchTerm.length < 3 ? null : searchTerm
       }
     });
+
     const newItems = results.data.results.map((item: any) => {
       return {
         id: item.id,
         title: item.original_name || item.name,
-        poster_path: item.poster_path
+        poster_path: item.poster_path,
+        category
       }
     })
     setItems(newItems.slice(0, 10));
   }
-
-  useEffect(() => {
-    console.log(items)
-  }, [items])
 
   useEffect(() => {
     if(searchTerm.length < 3) {
