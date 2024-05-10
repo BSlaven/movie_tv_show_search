@@ -15,10 +15,17 @@ const generateApiRoute = (searchTerm: string, category:string): string => {
   return fetchingRoute;
 }
 
+type Items = {
+  title: string;
+  id: number;
+  poster_path: string;
+}
+
 const Home = () => {
 
   const [ searchTerm, setSearchTerm ] = useState<string>('');
   const [ category, setCategory ] = useState<string>('tv');
+  const [ items, setItems ] = useState<Items[]>([]);
 
   const fetchData = async () => {
 
@@ -31,7 +38,19 @@ const Home = () => {
       }
     });
     console.log(results.data.results);
+    const newItems = results.data.results.map((item: any) => {
+      return {
+        id: item.id,
+        title: item.original_name,
+        poster_path: item.poster_path
+      }
+    });
+    setItems(newItems.slice(0, 10));
   }
+
+  useEffect(() => {
+    console.log(items)
+  }, [items])
 
   useEffect(() => {
     if(searchTerm.length < 3) {
