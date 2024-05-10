@@ -3,6 +3,8 @@ import axios from "axios";
 
 import ItemCard from "../ItemCard/ItemCard"
 
+import styles from './Home.module.css'
+
 const API_KEY = import.meta.env.VITE_API_KEY;
 export const BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -67,19 +69,19 @@ const Home = () => {
   } 
   
   return (
-    <main className="container">
-      <header>
+    <main className={styles.container}>
+      <header className={styles.header}>
         <h1>Home</h1>
       </header>
-      <div className="category-bar">
+      <div className={styles.categoriesBar}>
         <button 
-          className="btn category-btn"
+          className={`${styles.btn} ${category === 'movie' ? 'selected' : ''}`}
           onClick={() => categoryClickHandler('movie')}
         >
           movies
         </button>
         <button
-          className="btn category-btn"
+          className={`${styles.btn} ${category === 'tv' ? 'selected' : ''}`}
           onClick={() => categoryClickHandler('tv')}
         >
           tv shows
