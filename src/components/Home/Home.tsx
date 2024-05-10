@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// import ItemCard from "../ItemCard/ItemCard"
+import ItemCard from "../ItemCard/ItemCard"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -15,7 +15,7 @@ const generateApiRoute = (searchTerm: string, category:string): string => {
   return fetchingRoute;
 }
 
-type Items = {
+export type ItemType = {
   title: string;
   id: number;
   poster_path: string;
@@ -25,7 +25,7 @@ const Home = () => {
 
   const [ searchTerm, setSearchTerm ] = useState<string>('');
   const [ category, setCategory ] = useState<string>('tv');
-  const [ items, setItems ] = useState<Items[]>([]);
+  const [ items, setItems ] = useState<ItemType[]>([]);
 
   const fetchData = async () => {
 
@@ -104,9 +104,13 @@ const Home = () => {
         />
         <p>{searchTerm}</p>
       </div>
-      <main className="cards-container">
-        {/* <ItemCard /> */}
-      </main>
+      <section className="cards-container">
+        {items.length === 0 ? <h1>No items here</h1> : (
+          items.map(item => (
+            <ItemCard key={item.id} item={item} />
+          ))
+        )}
+      </section>
     </main>
   )
 }
