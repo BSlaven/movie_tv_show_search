@@ -2,18 +2,20 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 3rem;
+  padding: 1rem;
 }
 
 .header {
-  /* border: 1px solid red; */
   text-align: center;
 }
 
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
 .categoriesBar {
-  /* border: 1px solid green; */
-  margin: 1rem 0;
-  /* padding: 1rem 2rem; */
+  margin: 1.3rem 0;
   text-align: center;
 }
 
@@ -37,7 +39,7 @@
 }
 
 /* SEARCH BAR */
-.search {
+.searchBar {
   /* border: 1px solid red; */
   width: 100%;
   padding: 1rem 0;
@@ -47,12 +49,12 @@
   margin-bottom: 2rem;
 }
 
-.search label {
+.searchBar label {
   font-size: 1.2rem;
-  color: rgba(58, 67, 73, 0.938)
+  color: rgba(58, 67, 73, 0.548)
 }
 
-.search input {
+.searchBar input {
   border: 2px solid rgb(198, 230, 252);
   padding: 0.5rem 1rem;
   outline: none;
@@ -61,7 +63,29 @@
   color:rgb(0, 22, 63)
 }
 
-.search input:focus {
+.searchBar input:focus {
   border-color: rgba(0, 153, 255, 0.575);
+}
 
+.searchTerm {
+  min-height: 1rem;
+  padding: 1rem 0 0;
+  line-height: 1rem;
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+/* CARD CONTAINER */
+.cardContainer {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 900px) {
+  .categoriesBar {
+    text-align: left;
+  }
 }

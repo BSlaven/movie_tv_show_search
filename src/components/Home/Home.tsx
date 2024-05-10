@@ -71,7 +71,7 @@ const Home = () => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        <h1>Home</h1>
+        <h1>Select and Search</h1>
       </header>
       <div className={styles.categoriesBar}>
         <button 
@@ -87,7 +87,7 @@ const Home = () => {
           tv shows
         </button>
       </div>
-      <div className="search-bar">
+      <div className={styles.searchBar}>
         <label htmlFor="search">Search</label>
         <input 
           type="text"
@@ -97,9 +97,9 @@ const Home = () => {
           value={searchTerm}
           onChange={(e) => handleSearchInput(e.target.value)}
         />
-        <p>{searchTerm}</p>
+        <p className={styles.searchTerm}>{searchTerm}</p>
       </div>
-      <section className="cards-container">
+      <section className={styles.cardContainer}>
         {items.length === 0 ? <h1>No items here</h1> : (
           items.map(item => (
             <ItemCard key={item.id} item={item} />

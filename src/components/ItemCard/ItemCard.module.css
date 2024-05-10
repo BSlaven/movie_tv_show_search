@@ -1,15 +1,9 @@
-/* CONTAINER */
-.cardContainer {
-  width: 100%;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
 .card {
   /* background: rgba(0, 153, 255, 0.575); */
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   position: relative;
+  border-radius: 0.3rem;
+  overflow: hidden;
 }
 
 .cardImage {
