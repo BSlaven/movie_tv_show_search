@@ -4,9 +4,9 @@ import axios from "axios";
 import ItemCard from "../ItemCard/ItemCard"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+export const BASE_URL = 'https://api.themoviedb.org/3';
 
 const generateApiRoute = (searchTerm: string, category:string): string => {
-  const BASE_URL = 'https://api.themoviedb.org/3';
 
   const isSearchRoute = `${searchTerm.length < 3 ? '' : 'search/'}`;
   
@@ -37,14 +37,7 @@ const Home = () => {
         query: searchTerm.length < 3 ? null : searchTerm
       }
     });
-    console.log(results.data.results);
-    const newItems = results.data.results.map((item: any) => {
-      return {
-        id: item.id,
-        title: item.original_name || item.original_title,
-        poster_path: item.poster_path
-      }
-    });
+    const newItems = results.data.results
     setItems(newItems.slice(0, 10));
   }
 
