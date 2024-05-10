@@ -32,15 +32,16 @@
     })
   ```
 
-- Put your API_KEY as an environment variable in a .evn file at the root of your project:
+- Put your API_KEY as an environment variable in a .env file at the root of your project:
 ```
   VITE_API_KEY=<YOUR_UNIQUE_API_KEY>
 ```
 
 - Do **NOT** change the way Vite builder imports this variable from .env file. This is different from the way environment variables are usually imported in JavaScript/TypeScript, but it is necessary. Otherwise Vite builder will not be able to recognize them.
 
-- Vite builder also requires all .env variables to be named in a way that there is word 'VITE' at the begining:
+- Vite builder also requires all .env variables to be prefixed with a word 'VITE' at the begining:
 ```
-**VITE**_API_KEY=<YOUR_UNIQUE_API_KEY>
+VITE_API_KEY=<YOUR_UNIQUE_API_KEY>
+```
 
-### Usage
+### Technologies
