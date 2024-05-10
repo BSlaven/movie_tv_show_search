@@ -1,8 +1,10 @@
 import { ItemType } from "../Home/Home"
 
+import { Link } from "react-router-dom"
+
 const ItemCard = ({ item }:any) => {
   return (
-    <div className='card'>
+    <Link to={`/details/${item.id}`}  className='card'>
       <div className="card-image">
         <img 
           src={`https://image.tmdb.org/t/p/w500/${item.poster_path}.jpg`}
@@ -12,7 +14,7 @@ const ItemCard = ({ item }:any) => {
       <p className="item-title">
         {item.title}
       </p>
-    </div>
+    </Link>
   )
 }
 
