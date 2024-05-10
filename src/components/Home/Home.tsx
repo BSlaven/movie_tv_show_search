@@ -41,7 +41,7 @@ const Home = () => {
     const newItems = results.data.results.map((item: any) => {
       return {
         id: item.id,
-        title: item.original_name,
+        title: item.original_name || item.original_title,
         poster_path: item.poster_path
       }
     });
@@ -102,6 +102,7 @@ const Home = () => {
           value={searchTerm}
           onChange={(e) => handleSearchInput(e.target.value)}
         />
+        <p>{searchTerm}</p>
       </div>
       <main className="cards-container">
         {/* <ItemCard /> */}
