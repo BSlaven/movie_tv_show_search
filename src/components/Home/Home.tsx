@@ -75,13 +75,13 @@ const Home = () => {
       </header>
       <div className={styles.categoriesBar}>
         <button 
-          className={`${styles.btn} ${category === 'movie' ? 'selected' : ''}`}
+          className={`${styles.btn} ${category === 'movie' ? styles.selected : ''}`}
           onClick={() => categoryClickHandler('movie')}
         >
           movies
         </button>
         <button
-          className={`${styles.btn} ${category === 'tv' ? 'selected' : ''}`}
+          className={`${styles.btn} ${category === 'tv' ? styles.selected : ''}`}
           onClick={() => categoryClickHandler('tv')}
         >
           tv shows
