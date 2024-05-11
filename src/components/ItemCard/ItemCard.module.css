@@ -21,4 +21,7 @@
   bottom: 0.5rem;
   z-index: 3;
   text-align: center;
+  background-color: #edffff;
+  color: #222831;
+  padding: 1rem 1.rem;
 }
