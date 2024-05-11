@@ -18,21 +18,22 @@ const ItemPage = () => {
   const { id, category } = useParams();
 
   const [ item, setItem ] = useState<ItemDetailsType | null>(null);
+
   useEffect(() => {
     const fetchItem = async () => {
-      const resultItem = await axios.get(`${BASE_URL}/${category}/${id}`, {
-        params: {
-          api_key: API_KEY
+        const resultItem = await axios.get(`${BASE_URL}/${category}/${id}`, {
+          params: {
+            api_key: API_KEY
+          }
+        });
+  
+        const newItem = {
+          title: resultItem.data.name || resultItem.data.original_name || resultItem.data.original_title,
+          id: resultItem.data.id,
+          poster_path: resultItem.data.poster_path,
+          overview: resultItem.data.overview
         }
-      });
-
-      const newItem = {
-        title: resultItem.data.name || resultItem.data.original_name || resultItem.data.original_title,
-        id: resultItem.data.id,
-        poster_path: resultItem.data.poster_path,
-        overview: resultItem.data.overview
-      }
-      setItem(newItem);
+        setItem(newItem);
     }
 
     fetchItem();

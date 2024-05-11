@@ -28,27 +28,33 @@ const Home = () => {
   const [ searchTerm, setSearchTerm ] = useState<string>('');
   const [ category, setCategory ] = useState<string>('tv');
   const [ items, setItems ] = useState<ItemType[]>([]);
+  const [ error, setError ] = useState<string>('')
 
   const fetchData = async () => {
 
     const fetchingRoute = generateApiRoute(searchTerm, category);
 
-    const results = await axios.get(fetchingRoute, {
-      params: {
-        api_key: API_KEY,
-        query: searchTerm.length < 3 ? null : searchTerm
-      }
-    });
-
-    const newItems = results.data.results.map((item: any) => {
-      return {
-        id: item.id,
-        title: item.original_name || item.name,
-        poster_path: item.poster_path,
-        category
-      }
-    })
-    setItems(newItems.slice(0, 10));
+    try {
+      const results = await axios.get(fetchingRoute, {
+        params: {
+          api_key: API_KEY,
+          query: searchTerm.length < 3 ? null : searchTerm
+        }
+      });
+  
+      const newItems = results.data.results.map((item: any) => {
+        return {
+          id: item.id,
+          title: item.original_name || item.name,
+          poster_path: item.poster_path,
+          category
+        }
+      })
+      setItems(newItems.slice(0, 10));
+      setError('')
+    } catch(e) {
+      setError('Something went wrong');
+    }
   }
 
   useEffect(() => {
@@ -104,7 +110,7 @@ const Home = () => {
         <p className={styles.searchTerm}>{searchTerm}</p>
       </div>
       <section className={styles.cardContainer}>
-        {items.length === 0 ? <h1>No items here</h1> : (
+        {items.length === 0 ? <h1>{error}</h1> : (
           items.map(item => (
             <ItemCard key={item.id} item={item} />
           ))
